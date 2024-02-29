@@ -2,3 +2,4 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=14047049&assignment_repo_type=AssignmentRepo)
 ### 2024 MDDN342 Project 1: Parameterised Space
 Depending on how my initial experiments go my idea for this project may change. At this point I am either planning on doing a background with only certain elements moving such as a room with a window in it and maybe a fireplace, or a production line in a industrial factory - or something more shape based with flowers and vines because I'd like to work on my skills using bezier curves and such.
+On second thoughts I don't really mind what I make as long as it's reasonably challenging and I'm using some new techniques.
