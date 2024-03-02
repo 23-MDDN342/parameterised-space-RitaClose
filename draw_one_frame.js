@@ -1,18 +1,66 @@
-var x = 0;
-
 
 function draw_one_frame(cur_frac) {
 	noStroke();
 	fill(0);
-	rect(0, 0, 960, 540);
+	rect(0, 0, 1920, 1080);
 
-	fill(255);
+	//Growing Flower Test
 
-	let offsetX = map(cur_frac, 0, 1, 0, width / 10);
-	for(i = 0; i < width / 10; i ++) {
-		rect((width / 10) * i - offsetX, height/5, 50, 50);
-		rect((width / 10) * i + offsetX, height/5 * 4, 50, 50);
+	let vineSeparation = 124;
+	let vineWidth = map(cur_frac, 0, 1, 0, 95);
+
+	stroke(255);
+	noFill();
+	strokeWeight(2);
+	angleMode(DEGREES);
+	for (j = 0; j < 5; j ++) {
+		for (i = 0; i < 20; i ++) {
+			arc((width / 5 * j), height - (i * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
+			arc((width / 5 * j) + 63, height + 63 - (i * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+		}
 	}
+	vineSeparation = 124; //62
+	strokeWeight(0.25);
+	for (j = 0; j < 5; j ++) {
+		for (i = 0; i < 20; i ++) {
+			arc((width / 5 * j), height - (i * vineSeparation), 80, 100, 310, 45, OPEN);
+			arc((width / 5 * j) + 63, height + 63 - (i * vineSeparation), 80, 100, 130, 225, OPEN);
+		}
+	}
+
+	strokeWeight(2);
+	let pointTrack = map(cur_frac, 0, 1, 0, height / 16);
+  	for (k = 0; k < 5; k ++) {
+		for (i = 0; i < 16; i ++) {
+			let pointY = [];
+			let pointX = [];
+			for (j = 0; j < 10; j ++) {
+				strokeWeight(sin(pointY[8] * 2));
+				stroke(70);
+				pointY.push(height - (height / 16 * i) - pointTrack);
+				pointX.push(30 * sin(pointY * 5) + 30 + width / 5 * k);
+				fill(255);
+				circle(pointX[j], pointY[j], i / 4);
+				noFill();
+				circle(pointX[j], pointY[j], i /2);
+				// point(pointX[j], pointY[j]);
+			}
+		}
+	}
+
+
+
+
+
+
+	// Rectangle Across Screen Test
+	// fill(255);
+
+	// let offsetX = map(cur_frac, 0, 1, 0, width / 10);
+	// for(i = 0; i < width / 10; i ++) {
+	// 	rect((width / 10) * i - offsetX, height/5, 50, 50);
+	// 	rect((width / 10) * i + offsetX, height/5 * 4, 50, 50);
+	// }
 }
 
 

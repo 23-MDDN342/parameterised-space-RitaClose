@@ -3,3 +3,7 @@
 ### 2024 MDDN342 Project 1: Parameterised Space
 Depending on how my initial experiments go my idea for this project may change. At this point I am either planning on doing a background with only certain elements moving such as a room with a window in it and maybe a fireplace, or a production line in a industrial factory - or something more shape based with flowers and vines because I'd like to work on my skills using bezier curves and such.
 On second thoughts I don't really mind what I make as long as it's reasonably challenging and I'm using some new techniques.
+
+03/03/2024
+Today I am going to try experimenting with different ideas and see which is the most interesting.
+Ok so the industrial line idea is completely out the window at this point. I have reverted to flowers and sine waves. Well at this point it's mostly just vines and floaty orb things but the goal is to add flowers that grow as they rise up the vine and blossom at the top? Should be interesting to do I think.
