@@ -1,4 +1,5 @@
-
+let counter = 0;
+let scaleLeaf = 0;
 function draw_one_frame(cur_frac) {
 	noStroke();
 	fill(0);
@@ -17,6 +18,8 @@ function draw_one_frame(cur_frac) {
 		for (i = 0; i < 20; i ++) {
 			arc((width / 5 * j), height - (i * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
 			arc((width / 5 * j) + 63, height + 63 - (i * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+			
+			// point((width / 5 * j), height - (i * vineSeparation));
 		}
 	}
 	vineSeparation = 124; //62
@@ -31,6 +34,7 @@ function draw_one_frame(cur_frac) {
 	strokeWeight(2);
 	let pointTrack = map(cur_frac, 0, 1, 0, height / 16);
   	for (k = 0; k < 5; k ++) {
+		angleMode(DEGREES);
 		for (i = 0; i < 16; i ++) {
 			let pointY = [];
 			let pointX = [];
@@ -46,7 +50,43 @@ function draw_one_frame(cur_frac) {
 				// point(pointX[j], pointY[j]);
 			}
 		}
+		let leafTrack = map(cur_frac, 0, 1, 0, height / 9);
+		for (l = 0; l < 25; l ++) {
+			push();
+			angleMode(RADIANS);
+
+			let leafY = height + 100 - (height / 18 * l) - leafTrack;
+			let leafX = 10 * sin(leafY * 0.05) + 42 + width / 5 * k;
+			
+			fill(0);
+			stroke(255);
+			strokeWeight(1);
+			if (l % 2 == 1) {
+				translate(leafX - 20, leafY);
+				rotate(-40);
+			} else {
+				translate(leafX, leafY);
+				rotate(40);
+			}
+			angleMode(DEGREES);
+			scale(0.75);
+			// scale(1, 10 * sin(leafX * 0.1));
+			// if (cur_frac == 1) {
+			// 	scaleLeaf = 0;
+			// }
+			// if (cur_frac < 0.5) {
+			// 	scaleLeaf += 0.001;
+			// 	scale(scaleLeaf);
+			// } else {
+			// 	scaleLeaf -= 0.001;
+			// 	scale(scaleLeaf);
+			// }
+			arc(0, -6, 40, 30, 20, 160);
+			arc(0, 6, 40, 30, 200, 340);
+			pop();
+		}
 	}
+
 
 
 
