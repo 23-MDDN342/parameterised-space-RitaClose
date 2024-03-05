@@ -3,12 +3,14 @@ let scaleLeaf = 0;
 function draw_one_frame(cur_frac) {
 	noStroke();
 	fill(0);
-	rect(0, 0, 1920, 1080);
+	rect(0, 0, width, height);
 
 	//Growing Flower Test
 
 	let vineSeparation = 124;
 	let vineWidth = map(cur_frac, 0, 1, 0, 95);
+	let widthSpac = (width / 5);
+	let widthSpacCenter = widthSpac / 4;
 
 	stroke(255);
 	noFill();
@@ -16,18 +18,18 @@ function draw_one_frame(cur_frac) {
 	angleMode(DEGREES);
 	for (j = 0; j < 5; j ++) {
 		for (i = 0; i < 20; i ++) {
-			arc((width / 5 * j), height - (i * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
-			arc((width / 5 * j) + 63, height + 63 - (i * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+			arc((widthSpac * j) + widthSpacCenter, height - (i * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
+			arc((widthSpac * j) + widthSpacCenter + 63, height + 63 - (i * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
 			
-			// point((width / 5 * j), height - (i * vineSeparation));
+			// point((widthSpac * j), height - (i * vineSeparation));
 		}
 	}
 	vineSeparation = 124; //62
 	strokeWeight(0.25);
 	for (j = 0; j < 5; j ++) {
 		for (i = 0; i < 20; i ++) {
-			arc((width / 5 * j), height - (i * vineSeparation), 80, 100, 310, 45, OPEN);
-			arc((width / 5 * j) + 63, height + 63 - (i * vineSeparation), 80, 100, 130, 225, OPEN);
+			arc((widthSpac * j) + widthSpacCenter, height - (i * vineSeparation), 80, 100, 310, 45, OPEN);
+			arc((widthSpac * j) + widthSpacCenter + 63, height + 63 - (i * vineSeparation), 80, 100, 130, 225, OPEN);
 		}
 	}
 
@@ -42,7 +44,7 @@ function draw_one_frame(cur_frac) {
 				strokeWeight(sin(pointY[8] * 2));
 				stroke(70);
 				pointY.push(height - (height / 16 * i) - pointTrack);
-				pointX.push(30 * sin(pointY * 5) + 30 + width / 5 * k);
+				pointX.push(30 * sin(pointY * 5) + 30 + widthSpac * k + widthSpacCenter);
 				fill(255);
 				circle(pointX[j], pointY[j], i / 4);
 				noFill();
@@ -51,25 +53,28 @@ function draw_one_frame(cur_frac) {
 			}
 		}
 		let leafTrack = map(cur_frac, 0, 1, 0, height / 9);
+		let leafRot = map(cur_frac, 0, 1, -40, 40);
 		for (l = 0; l < 25; l ++) {
 			push();
 			angleMode(RADIANS);
 
-			let leafY = height + 100 - (height / 18 * l) - leafTrack;
-			let leafX = 10 * sin(leafY * 0.05) + 42 + width / 5 * k;
+			let leafY = height + 100 - (height / 9 * l) - leafTrack; // 18 if not spinning leaves
+			let leafX = 10 * sin(leafY * 0.05) + 42 + widthSpac * k + widthSpacCenter;
 			
 			fill(0);
 			stroke(255);
 			strokeWeight(1);
 			if (l % 2 == 1) {
-				translate(leafX - 20, leafY);
-				rotate(-40);
+				translate(leafX + sin(leafRot * 0.045) * 5 - 9, leafY);
+				// rotate(sin(leafRot * 0.008) + 30); // -40
+				rotate(leafRot);
 			} else {
-				translate(leafX, leafY);
-				rotate(40);
+				translate(leafX - sin(leafRot * 0.045) * 5 - 11, leafY);
+				// rotate(sin(leafRot * 0.008) * -1 - 30); // 40
+				rotate(-leafRot);
 			}
 			angleMode(DEGREES);
-			scale(0.75);
+			scale(0.5);
 			// scale(1, 10 * sin(leafX * 0.1));
 			// if (cur_frac == 1) {
 			// 	scaleLeaf = 0;

@@ -7,3 +7,8 @@ On second thoughts I don't really mind what I make as long as it's reasonably ch
 03/03/2024
 Today I am going to try experimenting with different ideas and see which is the most interesting.
 Ok so the industrial line idea is completely out the window at this point. I have reverted to flowers and sine waves. Well at this point it's mostly just vines and floaty orb things but the goal is to add flowers that grow as they rise up the vine and blossom at the top? Should be interesting to do I think.
+
+05/03/2024
+I added in the leaves today, although there are still some 'popping' issues between each second. I think after this is fixed I need to go back and paramaterise everything, clean up my code, and rename some of my more obscure variables before they stop making sense. I have also noticed that when I resize the canvas, although the code elements are all still in the correct places, the timing of the sine waves are much faster - which breaks up the nice rhythm of the wallpaper.
+--
+Also I've given up on the leaves for now, I will come back to it once I've thought of a solution to the timing problem.
