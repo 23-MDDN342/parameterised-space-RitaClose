@@ -1,5 +1,7 @@
 let counter = 0;
 let scaleLeaf = 0;
+
+
 function draw_one_frame(cur_frac) {
 	noStroke();
 	fill(0);
@@ -7,64 +9,75 @@ function draw_one_frame(cur_frac) {
 
 	//Growing Flower Test
 
+	//Width Variables
 	let vineSeparation = 124;
 	let vineWidth = map(cur_frac, 0, 1, 0, 95);
-	let widthSpac = (width / 5);
-	let widthSpacCenter = widthSpac / 4;
+	let canvasWidth = (Math.round(width / 100) * 100) / 200;
+	let widthSpac = (width / canvasWidth);
+	let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
 
+	
+
+	//Vine Tracking Marks
 	stroke(255);
 	noFill();
 	strokeWeight(2);
 	angleMode(DEGREES);
-	for (j = 0; j < 5; j ++) {
-		for (i = 0; i < 20; i ++) {
-			arc((widthSpac * j) + widthSpacCenter, height - (i * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
-			arc((widthSpac * j) + widthSpacCenter + 63, height + 63 - (i * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+	for (tc = 0; tc < canvasWidth; tc ++) {//Tracker Columns
+		for (tr = 0; tr < 20; tr ++) { // Tracker Rows
+			//arc(x, y, width, height, start, stop, style);
+			arc((widthSpac * tc) + widthSpacCenter, height - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
+			arc((widthSpac * tc) + widthSpacCenter + 63, height + 63 - (tr * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
 			
-			// point((widthSpac * j), height - (i * vineSeparation));
+			// point((widthSpac * tc), height - (tr * vineSeparation));
 		}
 	}
+	//Main Vine Arcs
 	vineSeparation = 124; //62
 	strokeWeight(0.25);
-	for (j = 0; j < 5; j ++) {
-		for (i = 0; i < 20; i ++) {
-			arc((widthSpac * j) + widthSpacCenter, height - (i * vineSeparation), 80, 100, 310, 45, OPEN);
-			arc((widthSpac * j) + widthSpacCenter + 63, height + 63 - (i * vineSeparation), 80, 100, 130, 225, OPEN);
+	for (vc = 0; vc < canvasWidth; vc ++) { // Vine Columns
+		for (vr = 0; vr < 20; vr ++) { // Vine Rows
+			arc((widthSpac * vc) + widthSpacCenter, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
+			arc((widthSpac * vc) + widthSpacCenter + 63, height + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
 		}
 	}
 
+	//Sine Wave Partcles around Vines
 	strokeWeight(2);
 	let pointTrack = map(cur_frac, 0, 1, 0, height / 16);
-  	for (k = 0; k < 5; k ++) {
+  	for (c = 0; c < canvasWidth; c ++) { // Columns
 		angleMode(DEGREES);
-		for (i = 0; i < 16; i ++) {
-			let pointY = [];
-			let pointX = [];
-			for (j = 0; j < 10; j ++) {
-				strokeWeight(sin(pointY[8] * 2));
-				stroke(70);
-				pointY.push(height - (height / 16 * i) - pointTrack);
-				pointX.push(30 * sin(pointY * 5) + 30 + widthSpac * k + widthSpacCenter);
+		for (pr = 0; pr < 16; pr ++) { // Particle Rows
+			let pointY = 0;
+			let pointX = 0;
+			for (pt = 0; pt < 10; pt ++) { // Particle Trails
+				pointY = height - (height / 16 * pr) - pointTrack;
+				pointX = 30 * sin(pointY * 5 + pt) + 30 + widthSpac * c + widthSpacCenter;
 				fill(255);
-				circle(pointX[j], pointY[j], i / 4);
-				noFill();
-				circle(pointX[j], pointY[j], i /2);
-				// point(pointX[j], pointY[j]);
+				noStroke();
+				circle(pointX, pointY + sin(pointY * 5 / pt), (pr / 4) - pt / 10);
 			}
+			noFill();
+			strokeWeight(sin(pointY * 2));
+			stroke(70);
+			circle(pointX, pointY, pr / 2);
+			point(pointX, pointY);
 		}
+
+		// Leaves
 		let leafTrack = map(cur_frac, 0, 1, 0, height / 9);
 		let leafRot = map(cur_frac, 0, 1, -40, 40);
-		for (l = 0; l < 25; l ++) {
+		for (lr = 0; lr < 25; lr ++) { // Leaf Rows
 			push();
 			angleMode(RADIANS);
 
-			let leafY = height + 100 - (height / 9 * l) - leafTrack; // 18 if not spinning leaves
-			let leafX = 10 * sin(leafY * 0.05) + 42 + widthSpac * k + widthSpacCenter;
+			let leafY = height + 100 - (height / 9 * lr) - leafTrack; // 18 if not spinning leaves
+			let leafX = 10 * sin(leafY * 0.05) + 42 + widthSpac * c + widthSpacCenter;
 			
 			fill(0);
 			stroke(255);
 			strokeWeight(1);
-			if (l % 2 == 1) {
+			if (lr % 2 == 1) {
 				translate(leafX + sin(leafRot * 0.045) * 5 - 9, leafY);
 				// rotate(sin(leafRot * 0.008) + 30); // -40
 				rotate(leafRot);
@@ -91,21 +104,6 @@ function draw_one_frame(cur_frac) {
 			pop();
 		}
 	}
-
-
-
-
-
-
-
-	// Rectangle Across Screen Test
-	// fill(255);
-
-	// let offsetX = map(cur_frac, 0, 1, 0, width / 10);
-	// for(i = 0; i < width / 10; i ++) {
-	// 	rect((width / 10) * i - offsetX, height/5, 50, 50);
-	// 	rect((width / 10) * i + offsetX, height/5 * 4, 50, 50);
-	// }
 }
 
 

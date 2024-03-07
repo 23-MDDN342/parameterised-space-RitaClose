@@ -12,3 +12,12 @@ Ok so the industrial line idea is completely out the window at this point. I hav
 I added in the leaves today, although there are still some 'popping' issues between each second. I think after this is fixed I need to go back and paramaterise everything, clean up my code, and rename some of my more obscure variables before they stop making sense. I have also noticed that when I resize the canvas, although the code elements are all still in the correct places, the timing of the sine waves are much faster - which breaks up the nice rhythm of the wallpaper.
 --
 Also I've given up on the leaves for now, I will come back to it once I've thought of a solution to the timing problem.
+
+07/03/24
+Just renaming variables and sorting out other coding parts.
+
+
+
+Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
+
+<p><iframe style="border: 0px #ffffff none;" title="embedded content" src="https://23-mddn342.github.io/parameterised-space-RitaClose/" width="90%" height="540px" name="Rita" allowfullscreen="allowfullscreen" data-mce-fragment="1"></iframe></p>
