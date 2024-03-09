@@ -16,6 +16,9 @@ Also I've given up on the leaves for now, I will come back to it once I've thoug
 07/03/24
 Just renaming variables and sorting out other coding parts.
 
+09/03/24
+I think I finally figured out how to make the leaves work so they fit nicely in the sine wave and rotate without jumping everywhere. I did have to start the leaf code from scratch but i think it was worth it. Ideally the leaves would be less dense but I kind of like them as they are for now.
+
 
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
