@@ -101,26 +101,35 @@ function draw_one_frame(cur_frac) {
 			// noFill();
 			// stroke(255);
 			// circle(10 - pr, -30 + pr, 4);
-			translate(5, -5);
-			rotate(-180);
-			for(ii = 18; ii > pr; ii --) {
-				if (ii < 6) {
-					translate(0, -1);
-				} else {
-					translate(0, 1);
-				}
-				// rotate(-ii);
-				push();
-				rotate(20);
-				fill(240);
-				noStroke();
-				ellipse(0, 0, 2, 20 - ii);
-				pop();
-				noFill();
-				stroke(340 - ii * 2, 100, 100);
-				strokeWeight(0.5);
-				ellipse(0, 0, 20 - ii, 2);
-			}
+
+
+			// //FLOWERS
+			// translate(0, -5);
+			// rotate(200);
+			// push();
+			// 	translate(0, 5);
+			// 	fill(240);
+			// 	noStroke();
+			// 	ellipse(0, 0, 2, 20 - pr);
+			// pop();
+			// for(ii = 18; ii > pr; ii --) {
+			// 	if (ii < 6) {
+			// 		translate(0, -1);
+			// 	} else {
+			// 		translate(0, 1);
+			// 	}
+			// 	// rotate(-ii);
+			// 	// noFill();
+			// 	fill(340 - ii * 2, 100, 100)
+			// 	stroke(340 - ii * 2, 100, 40);
+			// 	strokeWeight(0.5);
+			// 	ellipse(0, 0, 20 - ii, 3);
+			// }
+			// fill(255);
+			// circle(0, 4, 2);
+			// circle(4, 2, 1);
+			// circle(2, 6, 1.5);
+
 			pop();
 
 		}

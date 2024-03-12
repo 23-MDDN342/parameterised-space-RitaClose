@@ -19,6 +19,8 @@ Just renaming variables and sorting out other coding parts.
 09/03/24
 I think I finally figured out how to make the leaves work so they fit nicely in the sine wave and rotate without jumping everywhere. I did have to start the leaf code from scratch but i think it was worth it. Ideally the leaves would be less dense but I kind of like them as they are for now.
 
+12/03/24
+Today I added in the lerpColor function to made the leaves colour so that the light side is always facing up to give the illusion of sunlight from above. I have also started on designs for the flower. At the moment they are flowers like Ivy but ideally I will up with something that looks like it is blooming more. Alternatively, I might consider adding in butterflies flying up between the vines. Then again, I think because most of the composition is moving all the time, some whitespace might be nice to keep.
 
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
