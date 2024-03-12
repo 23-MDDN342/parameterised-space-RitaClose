@@ -10,6 +10,13 @@ function draw_one_frame(cur_frac) {
 	stroke(255);
 	noFill();
 
+	colorMode(HSB);
+	let darkGreen = color(140, 100, 30);
+	let lightGreen = color(120, 100, 85);
+
+	let darkPink = color(345, 100, 50);
+	let lightPink = color(310, 100, 85);
+
 	
 
 	//Growing Flower Test
@@ -17,16 +24,14 @@ function draw_one_frame(cur_frac) {
 	//Width Variables
 	let vineSeparation = 124;
 	let vineWidth = map(cur_frac, 0, 1, 0, 95);
-	let canvasWidth = (Math.round(width / 100) * 100) / 200;
+	let canvasWidth = 5; //(Math.round(width / 100) * 100) / 200
 	let widthSpac = (width / canvasWidth);
 	let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
 
-	
-
 	//Vine Tracking Marks
-	stroke(255);
+	stroke(lightGreen);
 	noFill();
-	strokeWeight(2);
+	strokeWeight(3);
 	angleMode(DEGREES);
 	for (tc = 0; tc < canvasWidth; tc ++) {//Tracker Columns
 		for (tr = 0; tr < 20; tr ++) { // Tracker Rows
@@ -38,8 +43,9 @@ function draw_one_frame(cur_frac) {
 		}
 	}
 	//Main Vine Arcs
+	stroke(darkGreen);
 	vineSeparation = 124; //62
-	strokeWeight(0.25);
+	strokeWeight(random(0.25, 3));
 	for (vc = 0; vc < canvasWidth; vc ++) { // Vine Columns
 		for (vr = 0; vr < 20; vr ++) { // Vine Rows
 			arc((widthSpac * vc) + widthSpacCenter, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
@@ -56,7 +62,7 @@ function draw_one_frame(cur_frac) {
 			let pointY = 0;
 			let pointX = 0;
 			for (pt = 0; pt < 75; pt ++) { // Particle Trails
-				pointY = (height / 16 * pr) - pointTrack; // 16
+				pointY = (height / 16 * pr) - pointTrack - 20; // 16
 				pointX = 8 * cos(pointY * 5 + pt) + 30 + widthSpac * c + widthSpacCenter;
 				// fill(255);
 				// noStroke();
@@ -71,7 +77,6 @@ function draw_one_frame(cur_frac) {
 			push();
 			angleMode(DEGREES);
 			pointX2 = 10 * sin(pointY * 3) + 30 + widthSpac * c + widthSpacCenter;
-			
 			translate(pointX2 + 2, pointY + 21);
 			rotate(leafRot);
 			// if (pr % 2 == 1) {
@@ -84,13 +89,15 @@ function draw_one_frame(cur_frac) {
 
 			colorMode(HSB);
 			noStroke();
-			let darkGreen = color(140, 100, 30);
-			let lightGreen = color(120, 100, 85);
 
 			let leafLerp = map(leafRot, 220, 320, 0, 1);
 			let leafLerp2 = map(leafRot, 220, 320, 1, 0);
+
+			let scaleMap = map(pr, 5, 18, 1.1, 0.5);
 			
 			//Leaves and Berries
+			// scale((18-pr)/16); // map
+			scale(scaleMap);
 			fill(lerpColor(darkGreen, lightGreen, leafLerp)); // Dark Leaf
 			arc(18, 7, 40, 30, 200, 340, CHORD);
 			fill(lerpColor(darkGreen, lightGreen, leafLerp2)); // Light Leaf
@@ -103,39 +110,74 @@ function draw_one_frame(cur_frac) {
 			// circle(10 - pr, -30 + pr, 4);
 
 
-			// //FLOWERS
-			// translate(0, -5);
-			// rotate(200);
+			//FLOWERS
+			draw_Flowers(340, -5, 5);
+			draw_Flowers(200, 5, -20);
+
+			// translate(0, -15);
+			// rotate(cur_frac * 120);
 			// push();
-			// 	translate(0, 5);
-			// 	fill(240);
-			// 	noStroke();
-			// 	ellipse(0, 0, 2, 20 - pr);
-			// pop();
-			// for(ii = 18; ii > pr; ii --) {
-			// 	if (ii < 6) {
-			// 		translate(0, -1);
-			// 	} else {
-			// 		translate(0, 1);
-			// 	}
-			// 	// rotate(-ii);
-			// 	// noFill();
-			// 	fill(340 - ii * 2, 100, 100)
-			// 	stroke(340 - ii * 2, 100, 40);
-			// 	strokeWeight(0.5);
-			// 	ellipse(0, 0, 20 - ii, 3);
+			// scale(0.3);
+			// for(i = 0; i < 6; i ++) {
+			// 	rotate(60);
+			// 	fill(lerpColor(darkPink, lightPink, leafLerp)); // Dark Leaf
+			// 	arc(18, 7, 40, 30, 200, 340, CHORD);
+			// 	fill(lerpColor(darkPink, lightPink, leafLerp2)); // Light Leaf
+			// 	arc(18, -7, 40, 30, 20, 160, CHORD);
+			// 	// circle(10, 0, 10);
 			// }
 			// fill(255);
-			// circle(0, 4, 2);
-			// circle(4, 2, 1);
-			// circle(2, 6, 1.5);
+			// circle(0, 0, 8);
+			// pop();
+			
 
 			pop();
+
+			// let circleMap = map(cur_frac, 0, 1, height / 5, 0);
+			// for (j = 0; j < 8; j ++) {
+			// 	for(i = 0; i < 7; i ++) {
+			// 		fill(180, 100, 100);
+			// 		noStroke();
+			// 		if (j % 2 == 1){
+			// 			circle(j * width / 5, circleMap + (i * height / 5) - 50, 5);
+			// 		} else {
+			// 			circle(j * width / 5, circleMap + (i * height / 5), 5);
+			// 		}
+			// 	}
+			// }
 
 		}
 	}
 }
 
+function draw_Flowers(rotation, translateX, translateY) {
+			translate(translateX, translateY);
+			rotate(rotation);
+			push();
+				translate(0, 5);
+				fill(240);
+				noStroke();
+				ellipse(0, 0, 2, 20 - pr);
+			pop();
+			for(ii = 18; ii > pr; ii --) {
+				if (ii < 6) {
+					translate(0, -1);
+				} else {
+					translate(0, 1);
+				}
+				// rotate(-ii);
+				noFill();
+				// fill(340 - ii * 2, 100, 100);
+				stroke(360 - ii * 5, 100, 80 - ii * 4);
+				strokeWeight(1);
+				ellipse(0, 0, 20 - ii, 5);
+			}
+			fill(255);
+			noStroke();
+			circle(0, 4, 2);
+			circle(4, 2, 1);
+			circle(2, 6, 1.5);
+}
 
 
 // var x = 300;

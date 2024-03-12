@@ -22,6 +22,13 @@ I think I finally figured out how to make the leaves work so they fit nicely in 
 12/03/24
 Today I added in the lerpColor function to made the leaves colour so that the light side is always facing up to give the illusion of sunlight from above. I have also started on designs for the flower. At the moment they are flowers like Ivy but ideally I will up with something that looks like it is blooming more. Alternatively, I might consider adding in butterflies flying up between the vines. Then again, I think because most of the composition is moving all the time, some whitespace might be nice to keep.
 
+Things I need to do:
+- Learn about easing function - add it to leaves and flowers maybe
+- Clean up code - create functions and add commenting
+- experiment with flower types - try circular design
+- Revamp all code to make it responsive to size - including sin waves etc.
+
+
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
 
