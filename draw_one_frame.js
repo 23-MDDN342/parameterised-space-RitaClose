@@ -12,82 +12,119 @@ function draw_one_frame(cur_frac) {
 
 	
 
-	// //Growing Flower Test
+	//Growing Flower Test
 
-	// //Width Variables
-	// let vineSeparation = 124;
-	// let vineWidth = map(cur_frac, 0, 1, 0, 95);
-	// let canvasWidth = (Math.round(width / 100) * 100) / 200;
-	// let widthSpac = (width / canvasWidth);
-	// let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
+	//Width Variables
+	let vineSeparation = 124;
+	let vineWidth = map(cur_frac, 0, 1, 0, 95);
+	let canvasWidth = (Math.round(width / 100) * 100) / 200;
+	let widthSpac = (width / canvasWidth);
+	let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
 
 	
 
-	// //Vine Tracking Marks
-	// stroke(255);
-	// noFill();
-	// strokeWeight(2);
-	// angleMode(DEGREES);
-	// for (tc = 0; tc < canvasWidth; tc ++) {//Tracker Columns
-	// 	for (tr = 0; tr < 20; tr ++) { // Tracker Rows
-	// 		//arc(x, y, width, height, start, stop, style);
-	// 		arc((widthSpac * tc) + widthSpacCenter, height - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
-	// 		arc((widthSpac * tc) + widthSpacCenter + 63, height + 63 - (tr * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+	//Vine Tracking Marks
+	stroke(255);
+	noFill();
+	strokeWeight(2);
+	angleMode(DEGREES);
+	for (tc = 0; tc < canvasWidth; tc ++) {//Tracker Columns
+		for (tr = 0; tr < 20; tr ++) { // Tracker Rows
+			//arc(x, y, width, height, start, stop, style);
+			arc((widthSpac * tc) + widthSpacCenter, height - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
+			arc((widthSpac * tc) + widthSpacCenter + 63, height + 63 - (tr * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
 			
-	// 		// point((widthSpac * tc), height - (tr * vineSeparation));
-	// 	}
-	// }
-	// //Main Vine Arcs
-	// vineSeparation = 124; //62
-	// strokeWeight(0.25);
-	// for (vc = 0; vc < canvasWidth; vc ++) { // Vine Columns
-	// 	for (vr = 0; vr < 20; vr ++) { // Vine Rows
-	// 		arc((widthSpac * vc) + widthSpacCenter, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
-	// 		arc((widthSpac * vc) + widthSpacCenter + 63, height + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
-	// 	}
-	// }
+			// point((widthSpac * tc), height - (tr * vineSeparation));
+		}
+	}
+	//Main Vine Arcs
+	vineSeparation = 124; //62
+	strokeWeight(0.25);
+	for (vc = 0; vc < canvasWidth; vc ++) { // Vine Columns
+		for (vr = 0; vr < 20; vr ++) { // Vine Rows
+			arc((widthSpac * vc) + widthSpacCenter, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
+			arc((widthSpac * vc) + widthSpacCenter + 63, height + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
+		}
+	}
 
-	// //Sine Wave Partcles around Vines
-	// strokeWeight(2);
-	// let pointTrack = map(cur_frac, 0, 1, 0, height / 16); // 33.75
-  	// for (c = 0; c < canvasWidth; c ++) { // Columns
-	// 	angleMode(DEGREES);
-	// 	for (pr = 0; pr < 18; pr ++) { // Particle Rows // 18
-	// 		let pointY = 0;
-	// 		let pointX = 0;
-	// 		for (pt = 0; pt < 75; pt ++) { // Particle Trails
-	// 			pointY = (height / 16 * pr) - pointTrack; // 16
-	// 			pointX = 8 * cos(pointY * 5 + pt) + 30 + widthSpac * c + widthSpacCenter;
-	// 			// fill(255);
-	// 			// noStroke();
-	// 			stroke(255 - (pt * 5));
-	// 			strokeWeight(0.25);
-	// 			noFill();
-	// 			circle(pointX, pointY + cos(pointY * 5 + (pt * 10)), (pr / 4) - pt / 10);
-	// 		}
-	// 		//LEAVES
-	// 		push();
-	// 		angleMode(DEGREES);
-	// 		pointX2 = 10 * sin(pointY * 3) + 30 + widthSpac * c + widthSpacCenter;
-	// 		if (pr % 2 == 1) {
-	// 			translate(pointX2 + 2, pointY + 21);
-	// 			rotate(270 + 50 * sin(pointY * 3));
-	// 		} else {
-	// 			translate(pointX2 + 2, pointY + 21);
-	// 			rotate(270 + 50 * sin(pointY * 3));
-	// 		}
-	// 		colorMode(HSB);
-	// 		noStroke();
+	//Sine Wave Partcles around Vines
+	strokeWeight(2);
+	let pointTrack = map(cur_frac, 0, 1, 0, height / 16); // 33.75
+  	for (c = 0; c < canvasWidth; c ++) { // Columns
+		angleMode(DEGREES);
+		for (pr = 0; pr < 18; pr ++) { // Particle Rows // 18
+			let pointY = 0;
+			let pointX = 0;
+			for (pt = 0; pt < 75; pt ++) { // Particle Trails
+				pointY = (height / 16 * pr) - pointTrack; // 16
+				pointX = 8 * cos(pointY * 5 + pt) + 30 + widthSpac * c + widthSpacCenter;
+				// fill(255);
+				// noStroke();
+				stroke(255 - (pt * 5));
+				strokeWeight(0.25);
+				noFill();
+				circle(pointX, pointY + cos(pointY * 5 + (pt * 10)), (pr / 4) - pt / 10);
+			}
+			//LEAVES
+			let leafRot = 270 + 50 * sin(pointY * 3);
+
+			push();
+			angleMode(DEGREES);
+			pointX2 = 10 * sin(pointY * 3) + 30 + widthSpac * c + widthSpacCenter;
 			
-	// 		fill(120, 100, 80);
-	// 		arc(18, 7, 40, 30, 200, 340, CHORD);
-	// 		fill(120, 40, 80);
-	// 		arc(18, -7, 40, 30, 20, 160, CHORD);
-	// 		// fill(255, 0, 100);
-	// 		// circle(0, 0, 4);
-	// 		pop();
-	// 	}
-	// }
+			translate(pointX2 + 2, pointY + 21);
+			rotate(leafRot);
+			// if (pr % 2 == 1) {
+			// 	translate(pointX2 + 2, pointY + 21);
+			// 	rotate(270 + 50 * sin(pointY * 3));
+			// } else {
+			// 	translate(pointX2 + 2, pointY + 21);
+			// 	rotate(270 + 50 * sin(pointY * 3));
+			// }
+
+			colorMode(HSB);
+			noStroke();
+			let darkGreen = color(140, 100, 30);
+			let lightGreen = color(120, 100, 85);
+
+			let leafLerp = map(leafRot, 220, 320, 0, 1);
+			let leafLerp2 = map(leafRot, 220, 320, 1, 0);
+			
+			//Leaves and Berries
+			fill(lerpColor(darkGreen, lightGreen, leafLerp)); // Dark Leaf
+			arc(18, 7, 40, 30, 200, 340, CHORD);
+			fill(lerpColor(darkGreen, lightGreen, leafLerp2)); // Light Leaf
+			arc(18, -7, 40, 30, 20, 160, CHORD);
+			// fill(255, 0, 100);
+			// circle(18, 20, 4);
+			// circle(24, -25, 4);
+			// noFill();
+			// stroke(255);
+			// circle(10 - pr, -30 + pr, 4);
+			translate(5, -5);
+			rotate(-180);
+			for(ii = 18; ii > pr; ii --) {
+				if (ii < 6) {
+					translate(0, -1);
+				} else {
+					translate(0, 1);
+				}
+				// rotate(-ii);
+				push();
+				rotate(20);
+				fill(240);
+				noStroke();
+				ellipse(0, 0, 2, 20 - ii);
+				pop();
+				noFill();
+				stroke(340 - ii * 2, 100, 100);
+				strokeWeight(0.5);
+				ellipse(0, 0, 20 - ii, 2);
+			}
+			pop();
+
+		}
+	}
 }
 
 
