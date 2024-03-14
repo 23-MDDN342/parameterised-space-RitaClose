@@ -117,9 +117,10 @@ function draw_one_frame(cur_frac) {
 
 
 			//FLOWERS
-			draw_Flowers("MorningGlory", 340, -5, 5, 1);
-			draw_Flowers("MorningGlory", 200, 0, -5, 1);
-			// draw_Flowers('Lotus', 180, 0, -5, 0.3, lightPink, darkPink);
+			// draw_Flowers("MorningGlory", 340, -5, 5, 1);
+			// draw_Flowers("MorningGlory", 200, 0, -5, 1);
+			draw_Flowers('Lotus', 180, 0, -5, 0.4, lightPink, darkPink);
+			// draw_Flowers('Lotus', 60, -5, 0, 0.3, lightPink, darkPink);
 			// draw_Flowers('Pinwheel', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
 			// draw_Flowers('All', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
 
@@ -137,6 +138,14 @@ function draw_one_frame(cur_frac) {
 			// 		}
 			// 	}
 			// }
+
+			// colorMode(RGB);
+			// noStroke();
+			// fill(255, 0.6);
+			// push();
+			// quad(0, 0, 40, 0, 400, height, 200, height);
+			// quad(20, 0, 120, 0, width - 50, height, 500, height);
+			// pop();
 
 		}
 	}
@@ -185,9 +194,9 @@ function draw_Flowers(flowerType, rotation, translateX, translateY, scaling, col
 			rotate(rotation);
 			scale(scaling);
 			for(i = 0; i < 6; i ++) {
-				fill(color2);
+				fill(340 - pr * 2, 100, 60 - pr * 6);//color2
 				strokeWeight(1);
-				stroke(color1);
+				stroke(340 - pr * 2, 100, 100 - pr);//color1
 				rotate(20);
 				arc(18, 7, 40, 30, 200, 340, CHORD);
 				arc(18, -7, 40, 30, 20, 160, CHORD);
@@ -195,8 +204,8 @@ function draw_Flowers(flowerType, rotation, translateX, translateY, scaling, col
 			rotate(20);
 			scale(0.8);
 			for(i = 0; i < 6; i ++) {
-				fill(color1);
-				stroke(color2);
+				fill(340 - pr * 2, 100, 100 - pr);//color1
+				stroke(340 - pr * 2, 100, 60 - pr * 6);//color2
 				rotate(-20);
 				arc(18, 7, 40, 30, 200, 340, CHORD);
 				arc(18, -7, 40, 30, 20, 160, CHORD);
