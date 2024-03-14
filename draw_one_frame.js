@@ -102,34 +102,26 @@ function draw_one_frame(cur_frac) {
 			arc(18, 7, 40, 30, 200, 340, CHORD);
 			fill(lerpColor(darkGreen, lightGreen, leafLerp2)); // Light Leaf
 			arc(18, -7, 40, 30, 20, 160, CHORD);
-			// fill(255, 0, 100);
-			// circle(18, 20, 4);
-			// circle(24, -25, 4);
-			// noFill();
-			// stroke(255);
-			// circle(10 - pr, -30 + pr, 4);
+			push();
+			rotate(180);
+			translate(-35, 0);
+			for (i = 0; i < 5; i ++) {
+				noFill();
+				strokeWeight(0.5);
+				scale(1 - (i / 5));
+				stroke(darkGreen);
+				arc(18, 7, 40, 30, 200, 340, CHORD);
+				arc(18, -7, 40, 30, 20, 160, CHORD);
+			}
+			pop();
 
 
 			//FLOWERS
-			draw_Flowers(340, -5, 5);
-			draw_Flowers(200, 5, -20);
-
-			// translate(0, -15);
-			// rotate(cur_frac * 120);
-			// push();
-			// scale(0.3);
-			// for(i = 0; i < 6; i ++) {
-			// 	rotate(60);
-			// 	fill(lerpColor(darkPink, lightPink, leafLerp)); // Dark Leaf
-			// 	arc(18, 7, 40, 30, 200, 340, CHORD);
-			// 	fill(lerpColor(darkPink, lightPink, leafLerp2)); // Light Leaf
-			// 	arc(18, -7, 40, 30, 20, 160, CHORD);
-			// 	// circle(10, 0, 10);
-			// }
-			// fill(255);
-			// circle(0, 0, 8);
-			// pop();
-			
+			// draw_Flowers("MorningGlory", 340, -5, 5, 1);
+			// draw_Flowers("MorningGlory", 200, 5, -20, 1);
+			// draw_Flowers('Lotus', 180, 0, -5, 0.3, lightPink, darkPink);
+			// draw_Flowers('Pinwheel', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
+			// draw_Flowers('All', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
 
 			pop();
 
@@ -150,7 +142,16 @@ function draw_one_frame(cur_frac) {
 	}
 }
 
-function draw_Flowers(rotation, translateX, translateY) {
+function draw_Flowers(flowerType, rotation, translateX, translateY, scaling, color1, color2, cur_frac) {
+	console.log(flowerType);
+	// if (flowerType == 'All') {
+	// 	let flowerArray = ['MorningGlory', 'Lotus', 'Pinwheel'];
+	// 	let count = 1;
+	// 	flowerType = flowerArray[count];
+	// } 	
+	
+	if (flowerType == 'MorningGlory') {
+		push();
 			translate(translateX, translateY);
 			rotate(rotation);
 			push();
@@ -177,6 +178,53 @@ function draw_Flowers(rotation, translateX, translateY) {
 			circle(0, 4, 2);
 			circle(4, 2, 1);
 			circle(2, 6, 1.5);
+		pop();
+	}	else if (flowerType == 'Lotus') {
+		push();
+			translate(translateX, translateY);
+			rotate(rotation);
+			scale(scaling);
+			for(i = 0; i < 6; i ++) {
+				fill(color2);
+				strokeWeight(1);
+				stroke(color1);
+				rotate(20);
+				arc(18, 7, 40, 30, 200, 340, CHORD);
+				arc(18, -7, 40, 30, 20, 160, CHORD);
+			}
+			rotate(20);
+			scale(0.8);
+			for(i = 0; i < 6; i ++) {
+				fill(color1);
+				stroke(color2);
+				rotate(-20);
+				arc(18, 7, 40, 30, 200, 340, CHORD);
+				arc(18, -7, 40, 30, 20, 160, CHORD);
+			}
+			fill(255);
+		pop();
+	} else if (flowerType == 'Pinwheel') {
+		translate(translateX, translateY);
+		rotate(cur_frac * rotation);
+		push();
+		scale(scaling);
+		for(i = 0; i < 6; i ++) {
+			rotate(60);
+			fill(color1); // Dark Leaf
+			arc(18, 7, 40, 30, 200, 340, CHORD);
+			fill(color2); // Light Leaf
+			arc(18, -7, 40, 30, 20, 160, CHORD);
+			circle(10, 0, 10);
+		}
+		fill(255);
+		circle(0, 0, 8);
+		pop();
+	} else {
+		fill(255, 0, 100);
+		circle(18, 20, 4);
+		circle(24, -25, 4);
+	}
+	
 }
 
 
