@@ -118,7 +118,7 @@ function draw_one_frame(cur_frac) {
 
 			//FLOWERS
 			draw_Flowers("MorningGlory", 340, -5, 5, 1);
-			draw_Flowers("MorningGlory", 200, 5, -20, 1);
+			draw_Flowers("MorningGlory", 200, 0, -5, 1);
 			// draw_Flowers('Lotus', 180, 0, -5, 0.3, lightPink, darkPink);
 			// draw_Flowers('Pinwheel', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
 			// draw_Flowers('All', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac);
