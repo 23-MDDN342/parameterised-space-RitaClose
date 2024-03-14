@@ -28,6 +28,8 @@ Things I need to do:
 - experiment with flower types - try circular design
 - Revamp all code to make it responsive to size - including sin waves etc.
 
+14/03/24
+I haven't really made much progress with my design, I did decide to add in a lattice in the background, just for a bit of visual complexity - and it makes sense if the vines are growing up it. Next I might experiment with the background further and the motion blur etc - go and rewatch the lectures from this week and add some new concepts.
 
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
