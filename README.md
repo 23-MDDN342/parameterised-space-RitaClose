@@ -34,6 +34,9 @@ I haven't really made much progress with my design, I did decide to add in a lat
 18/03/24
 Finally! I have triumped over the canvas resizing shenanagins. It was sort of straightforward now that I have done it. It might need further tweaking depending on whether it's only these three sizes needed or whether it needs to be 'resizeable' to any canvas size. But for now it's good. I also made some changes to my lotus flower. Going to come back to this later and add some new things.
 
+19/03/24
+After a stroke of genius I have united the concepts of pinwheel and lotus flower. Also I am having a lot of fun with colours.
+
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
 
