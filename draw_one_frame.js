@@ -2,8 +2,11 @@ const ease = new p5.Ease();
 
 let counter = 0;
 let scaleLeaf = 0;
+
 let bees = false;
 
+//Splayed Flower Vines
+let flowerSplay = 'Random'; // 'Random', 'All', 'Alternate' 'None'
 let ranC = 1;
 
 let flowerType = 'Lotus'; // MorningGlory, Lotus, Pinwheel, None
@@ -44,8 +47,6 @@ function draw_one_frame(cur_frac) {
 	fill(0);
 	rect(0, 0, width, height);
 	angleMode(DEGREES);
-
-	translate(0, -20);
 
 	push();
 		scale(canvasMultiplier);
@@ -194,8 +195,13 @@ function draw_one_frame(cur_frac) {
 
 			//FLOWERS
 			let splayAmount;
+			let runFullFlower = false;
 
-			if(c == ranC && flowerType == 'Lotus') {
+			if ((flowerSplay == 'Random' && c == ranC) || (flowerSplay == 'Alternate' && c % 2 != 1) || flowerSplay == 'All') {
+				runFullFlower = true;
+			}
+
+			if(runFullFlower && flowerType == 'Lotus') {
 				if (clockWise) {
 					circleRotation = map(ease_amount_across, 0, 1, 0, 180);
 					splayAmount = map(ease_amount_across, 0, 1, 0, 55);
@@ -282,41 +288,40 @@ function draw_Flowers(flowerType, X, Y, color1, color2, cur_frac, extraRotation,
 		pop();
 	}	else if (flowerType == 'Lotus') {// Lotus, 180, 0, -5, 0.4, lightPink, darkPink
 		push();
-			translate(0, -5);
-			rotate(180);
+			translate(0, -3); // 0, 5
+			rotate(180); //40
 			scale(0.4);
 			strokeWeight(2);
-			stroke(100, 100, 60);
+			stroke(100, 100, 60); // Green Stalk
 			line(0, 0, 0, -5);
 			for(i = 0; i < 6; i ++) {
-				if (340 - pr * 2 + splay > 360) {
-					fill(340 - pr * 2 + splay, 100, 60 - pr * 6)
-					stroke(0 - pr * 2  + splay, 100, 100 - pr);
+				if (310 - pr * 2 + (splay * 5) > 360) {
+					fill(0 - pr * 2 + (splay * 5 - 360), 100, 60 - pr * 6 + (splay / 5));
 				} else {
-					fill(340 - pr * 2 + splay, 100, 60 - pr * 6);
-					stroke(0 - pr * 2  + splay, 100, 100 - pr);
+					fill(310 - pr * 2 + splay, 100, 60 - pr * 6 + (splay / 5));
 				}
+				stroke(310 - pr * 2  + splay, 100, 70 - pr);
 			
 				strokeWeight(1);
 				rotate(5 + splay);
 				arc(18, 7, 40, 30, 200, 340, CHORD);
 				arc(18, -7, 40, 30, 20, 160, CHORD);
 				
-				fill(330, 100, 90);
+				fill(255); //330, 100, 90
 				noStroke();
-				circle(30, 0, 4);
-				fill(330, 100, 30);
-				circle(40, 0, 2);
+				circle(30, 0, 3);
+				fill(310 - splay, 100, 30 + splay);
+				circle(40 + splay / 10, 0, 2);
 			}
 			rotate(20);
 			scale(0.8);
 			for(i = 0; i < 6; i ++) {
-				if (340 - pr * 2 + splay > 360) {
-					fill(0 - pr * 2  + splay, 100, 100 - pr)
-					stroke(340 - pr * 2 + splay, 100, 60 - pr * 6);//color2
+				if (320 - pr * 2 + (splay) > 360) {
+					fill(splay - 360, 100, 100 - pr)
+					stroke(320 - pr * 2 + splay, 100, 60 - pr * 6);//color2
 				} else {
-					fill(340 - pr * 2  + splay, 100, 100 - pr);//color1
-					stroke(340 - pr * 2 + splay, 100, 60 - pr * 6);//color2
+					fill(320 - pr * 2 + splay, 100, 100 - pr);//color1
+					stroke(320 - pr * 2 + splay, 100, 60 - pr * 6);//color2
 				}
 				rotate(-5 - splay);
 				arc(18, 7, 40, 30, 200, 340, CHORD);
@@ -324,10 +329,11 @@ function draw_Flowers(flowerType, X, Y, color1, color2, cur_frac, extraRotation,
 			}
 			rotate(-20);
 			for(i = 0; i < 6; i ++) {
-				rotate(40 + splay);
-				noFill();
-				stroke(340, 100, 40);
-				circle(5, 0, 8);
+				rotate(splay + 5);
+				stroke(255);
+				fill(255);
+				line(0, 0, splay * 0.7, 0);
+				circle(splay * 0.7, 0, 2);
 			}
 			fill(255);
 		pop();
