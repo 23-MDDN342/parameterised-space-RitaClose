@@ -1,40 +1,27 @@
 const ease = new p5.Ease();
 
-let counter = 0;
-let scaleLeaf = 0;
+// let counter = 0;
+// let scaleLeaf = 0;
 
-let bees = false;
+//Toggle Components
+let bees = true;
+let pots = true;
 
-//Splayed Flower Vines
-let flowerSplay = 'Random'; // 'Random', 'All', 'Alternate' 'None'
-let ranC = 1;
-
+//Flower Types
 let flowerType = 'Lotus'; // MorningGlory, Lotus, Pinwheel, None
-let flowerX = -5;
+let flowerX = -5; //Offset X and Y from Vines
 let flowerY = 5;
 
-let canvasMultiplier;
+//Spinning Flower Options
+let flowerSplay = 'Random'; // 'Random', 'All', 'Alternate' 'None'
+let ranC = 1; // Random Column Picker
+
+let canvasMultiplier; // To scale sine waves to Canvas size
 
 
 function draw_one_frame(cur_frac) {
-	let clockWise = true;
-	let curFracAmount = 0;
-	if (cur_frac < 0.5) {
-		clockWise = true;
-		curFracAmount = cur_frac * 2;
-	} else {
-		clockWise = false;
-		curFracAmount = (cur_frac - 0.5) * 2;
-	}
-
-	if(cur_frac == 0) {
-		ranC = floor(random(1, 5));
-	}
-	
-	const ease_amount_across = ease.circularInOut(curFracAmount); // bounceOut(curFracAmount, 2) // doubleCircularOgee(curFracAmount, 1)
-	
-	let canvasWidth = 5;
-	
+	//Canvas Scale Setup
+	let vineCount = 5; // Number of vines
 	if (width < 1000) {
 		canvasMultiplier = 1;
 	} else if (width < 1100) {
@@ -42,18 +29,41 @@ function draw_one_frame(cur_frac) {
 	} else {
 		canvasMultiplier = 2.2;
 	}
-	
 	noStroke();
 	fill(0);
 	rect(0, 0, width, height);
-	angleMode(DEGREES);
 
+	//Canvas Width Variables
+	let widthSpac = (width / vineCount);
+	let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
+	let spacing;
+	
+	//Spinning Flower Setup
+	let clockWise = true;
+	let curFracAmount = 0;
+	if (cur_frac < 0.5) { // First half of cur_frac
+		clockWise = true;
+		curFracAmount = cur_frac * 2;
+	} else { // Second half of cur_frac
+		clockWise = false;
+		curFracAmount = (cur_frac - 0.5) * 2;
+	}
+
+	if(cur_frac == 0) { // Random Vine Picker
+		ranC = floor(random(1, vineCount));
+	}
+	
+	//Flower Blooming Ease
+	const ease_amount_across = ease.circularInOut(curFracAmount); // bounceOut(curFracAmount, 2) // doubleCircularOgee(curFracAmount, 1)
+	
+	//TRELLIS BACKGROUND
+	angleMode(DEGREES);
 	push();
 		scale(canvasMultiplier);
 		fill(20);
 		translate(500, height * (2 / canvasMultiplier));
 		rotate(45);
-		for(i = 0; i < 30; i ++) {
+		for(i = 0; i < 30; i ++) { // Lattice Background
 			rotate(-90);
 			fill(20);
 			rect(0, i * -50, width * 2, 15);
@@ -69,46 +79,39 @@ function draw_one_frame(cur_frac) {
 			pop();
 		}
 	pop();
-	
-	stroke(255);
-	noFill();
 
+	// Colour Setup
 	colorMode(HSB);
-	let darkGreen = color(140, 100, 30);
+	let darkGreen = color(140, 100, 30); // Leaf Colours
 	let lightGreen = color(120, 100, 85);
 
-	let darkPink = color(345, 100, 50);
+	let darkPink = color(345, 100, 50); // Flower Colours
 	let lightPink = color(310, 100, 85);
 
-	
+	let vineYellow = color(40, 100, 100);
 
-	//Growing Flower Test
+	//VINES
 
-	//Width Variables
-	let vineSeparation = 124;
+	// Vine Variables
+	let vineSeparation = 124; // Vertical Arc Gap
 	let vineWidth = map(cur_frac, 0, 1, 0, 95);
-	let widthSpac = (width / canvasWidth);
-	let widthSpacCenter = widthSpac / 4; // Edge Spacing not yet fixed.
-	let spacing;
 
-	//Main Vine Arcs
+	//Main Vine Arcs (Green)
 	push();
 		scale(canvasMultiplier);
 		noFill();
-		strokeWeight(3);
 		stroke(darkGreen);
-		vineSeparation = 124; //62
 		strokeWeight((random(0.25, 3)) / canvasMultiplier);
-		for (vc = 0; vc < canvasWidth; vc ++) { // Vine Columns
-			spacing = widthSpacing(widthSpac, widthSpacCenter, vc, canvasMultiplier);
+		for (vc = 0; vc < vineCount; vc ++) { // Vine Columns
+			spacing = widthSpacing(widthSpac, widthSpacCenter, vc, canvasMultiplier); // Calculates Space between vines
 			for (vr = 0; vr < 20; vr ++) { // Vine Rows
 				arc(spacing, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
 				arc(spacing + 63, height + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
 			}
 		}
-		// Vine Tracking Marks
-		stroke(40, 100, 100);
-		for (tc = 0; tc < canvasWidth; tc ++) {//Tracker Columns
+		// Vine Tracking Marks (Yellow)
+		stroke(vineYellow);
+		for (tc = 0; tc < vineCount; tc ++) {//Tracker Columns
 			spacing = widthSpacing(widthSpac, widthSpacCenter, tc, canvasMultiplier);
 			for (tr = 0; tr < 20; tr ++) { // Tracker Rows
 				arc(spacing, height - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
@@ -117,10 +120,11 @@ function draw_one_frame(cur_frac) {
 		}
 	pop();
 
-	//Sine Wave Partcles around Vines
-	strokeWeight(2);
+	// BEES, LEAVES, & FLOWERS
+	
+	// let noiseNumber;
 	let pointTrack = map(cur_frac, 0, 1, 0, height / (16 * canvasMultiplier)); // 33.75
-  	for (c = 0; c < canvasWidth; c ++) { // Columns
+  	for (c = 0; c < vineCount; c ++) { // Columns
 		angleMode(DEGREES);
 		push();
 		scale(canvasMultiplier);
@@ -147,13 +151,13 @@ function draw_one_frame(cur_frac) {
 				ellipse(50 * sin(pointY * 5) + 30 + spacing, pointY -1, 3, random(0, 5));
 				ellipse(50 * sin(pointY * 5) + 31 + spacing, pointY - 2, 3, random(-1, 4));
 			}
-			
+			// + noiseNumber
 			//LEAVES
 			let leafRot = 270 + 50 * sin(pointY * 3);
-
 			push();
 			angleMode(DEGREES);
 			pointX2 = 10 * sin(pointY * 3) + 30 + spacing;
+			// noiseNumber = getNoiseValue(pointX2 + 2, pointY + (26 * canvasMultiplier), cur_frac, "LeafNoise", -0.2, 0.8, 100);
 			translate(pointX2 + 2, pointY + (26 * canvasMultiplier)); // 21, 28, 
 			rotate(leafRot);
 			// if (pr % 2 == 1) {
@@ -243,6 +247,17 @@ function draw_one_frame(cur_frac) {
 			// 		}
 			// 	}
 			// }
+		}
+		if (pots) {
+			fill(20, 80, 40);
+			noStroke();
+			quad(spacing + 15, height, spacing + 55, height, spacing + 65, height - 50, spacing + 5, height - 50);
+			fill(360, 40, 60);
+			rect(spacing + 5, height - 50, 60, 15, 2);
+			fill(360, 50, 20);
+			rect(spacing + 5, height - 35, 60, 2, 2);
+			fill(360, 40, 80);
+			rect(spacing + 5, height - 50, 60, 2, 2);
 		}
 		pop();
 	}
