@@ -359,8 +359,9 @@ function draw_Flowers(flowerType, X, Y, flowerColour, cur_frac, extraRotation, s
 		pop();
 	} else {
 		fill(255, 0, 100);
-		circle(18, 20, 4);
-		circle(24, -25, 4);
+		circle(2, 5, 3);
+		circle(5, 5, 2);
+		circle(5, 8, 2);
 	}
 	
 }
