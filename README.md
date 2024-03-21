@@ -75,3 +75,4 @@ After that I need to experiment with noise a little bit and see if I can add a l
 #### 21/03/24
 I finally got around to experimenting with noise, I tried adding it in with varying the size of the leaves, but I think it makes it a little too chaotic, especially as there are already a lot of moving parts in the composition.
 Lastly I will be working on cleaning up my comments and some varible names that aren't great. I also added in some pots at the bottom of the screen - but these may be removed - not sure yet.
+I decided against keeping the noise for the leaves, but I will leave in the pots. That's it for now I think.
