@@ -11,7 +11,7 @@
 The design for this project was inspired by a previous wallpaper design I had made. I wanted to create a zoom background that was languid and soothing to look at while still being visually surprising.
 
 #### Vine Component
-The vines were created using open arcs in a for loop going up the page. I took this further by creating small arcs that would appear to be sliding up the vines using the <i>cur_frac<i/> function.
+The vines were created using open arcs in a for loop going up the page. I took this further by creating small arcs that would appear to be sliding up the vines using the <i>cur_frac<i> function.
 
 #### Bee Component
 The bees originally began simply as dots that would circle the vines, these were made using sine waves split up into vertical segments so that each second they would only cover a small distance to create the helix effect of the bees circling the vine. This sine wave technique is used in many other components as well.
