@@ -66,6 +66,10 @@ After a stroke of genius I have united the concepts of pinwheel and lotus flower
 Next is to reorganise my code so that everything is clean and concise. I also need to fix the full-splayed flower, some of the line look a little strange.
 After that I need to experiment with noise a little bit and see if I can add a little more variation into my vine pattern. After adding easing today, and the opening flowers, I think I'm in a good place for hand in on Thursday.
 
+#### 21/03/24
+I finally got around to experimenting with noise, I tried adding it in with varying the size of the leaves, but I think it makes it a little too chaotic, especially as there are already a lot of moving parts in the composition.
+Lastly I will be working on cleaning up my comments and some varible names that aren't great. I also added in some pots at the bottom of the screen - but these may be removed - not sure yet.
+
 
 
 Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
