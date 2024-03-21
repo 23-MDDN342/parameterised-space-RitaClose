@@ -11,7 +11,7 @@
 The design for this project was inspired by a previous wallpaper design I had made. I wanted to create a zoom background that was languid and soothing to look at while still being visually surprising.
 
 #### Vine Component
-The vines were created using open arcs in a for loop going up the page. I took this further by creating small arcs that would appear to be sliding up the vines using the <i>cur_frac<i> function.
+The vines were created using open arcs in a for loop going up the page. I took this further by creating small arcs that would appear to be sliding up the vines using the cur_frac function.
 
 #### Bee Component
 The bees originally began simply as dots that would circle the vines, these were made using sine waves split up into vertical segments so that each second they would only cover a small distance to create the helix effect of the bees circling the vine. This sine wave technique is used in many other components as well.
@@ -27,7 +27,13 @@ I developed three different types of flowers that can be interchanged but for my
 #### Trellis Background
 To add some more visual interest, I added in a background that resembles a trellis structure you may find in gardens for vine plants to grow up.
 
-### Development Journal
+### Reflection
+I really enjoyed this project, I think although I didn't utilize all of the new elements we were taught, I honed some of my skills that I already had. I really enjoyed adding lots of detail to the leaves and flowers, and though there are still some issues that broke at the last minute, I think overall I am happy with the result. in the future, I would improve this project by adding more variation between the leaf/flower sizes for example - if this were a longer animation.
+
+
+
+
+### Development Journal (Inital Post)
 Depending on how my initial experiments go my idea for this project may change. At this point I am either planning on doing a background with only certain elements moving such as a room with a window in it and maybe a fireplace, or a production line in a industrial factory - or something more shape based with flowers and vines because I'd like to work on my skills using bezier curves and such.
 On second thoughts I don't really mind what I make as long as it's reasonably challenging and I'm using some new techniques.
 
@@ -69,9 +75,3 @@ After that I need to experiment with noise a little bit and see if I can add a l
 #### 21/03/24
 I finally got around to experimenting with noise, I tried adding it in with varying the size of the leaves, but I think it makes it a little too chaotic, especially as there are already a lot of moving parts in the composition.
 Lastly I will be working on cleaning up my comments and some varible names that aren't great. I also added in some pots at the bottom of the screen - but these may be removed - not sure yet.
-
-
-
-Pages Link: https://23-mddn342.github.io/parameterised-space-RitaClose/ 
-
-<p><iframe style="border: 0px #ffffff none;" title="embedded content" src="https://23-mddn342.github.io/parameterised-space-RitaClose/" width="90%" height="540px" name="Rita" allowfullscreen="allowfullscreen" data-mce-fragment="1"></iframe></p>

@@ -1,10 +1,10 @@
 const ease = new p5.Ease();
 
-// let counter = 0;
-// let scaleLeaf = 0;
-
-//Toggle Components
+//Bee Variables
 let bees = true;
+let beeSineWidth = 50;
+
+//Toggle Pots
 let pots = true;
 
 //Flower Types
@@ -14,7 +14,7 @@ let flowerY = 5;
 let baseFlowerColour = 300; // Pink
 
 //Spinning Flower Options
-let flowerSplay = 'Random'; // 'Random', 'All', 'Alternate' 'None'
+let flowerSplay = 'Alternate'; // 'Random', 'All', 'Alternate' 'None'
 let ranC = 1; // Random Column Picker
 
 let canvasMultiplier; // To scale sine waves to Canvas size
@@ -25,10 +25,10 @@ function draw_one_frame(cur_frac) {
 	let vineCount = 5; // Number of vines
 	if (width < 1000) {
 		canvasMultiplier = 1;
-	} else if (width < 1100) {
+	} else if (width < 2000) {
 		canvasMultiplier = 2;
 	} else {
-		canvasMultiplier = 2.2;
+		canvasMultiplier = 2.34;
 	}
 	noStroke();
 	fill(0);
@@ -64,7 +64,7 @@ function draw_one_frame(cur_frac) {
 		fill(20);
 		translate(500, height * (2 / canvasMultiplier));
 		rotate(45);
-		for(i = 0; i < 30; i ++) { // Lattice Background
+		for(i = 0; i < 23; i ++) { // Lattice Background
 			rotate(-90);
 			fill(20);
 			rect(0, i * -50, width * 2, 15);
@@ -85,7 +85,6 @@ function draw_one_frame(cur_frac) {
 	colorMode(HSB);
 	let darkGreen = color(140, 100, 30); // Leaf Colours
 	let lightGreen = color(120, 100, 85);
-
 	let vineYellow = color(40, 100, 100);
 
 	//VINES
@@ -96,24 +95,29 @@ function draw_one_frame(cur_frac) {
 
 	//Main Vine Arcs (Green)
 	push();
+		if(canvasMultiplier != 2) {
+			translate(0, -10); // Realignment
+		} else {
+			translate(0, -50);
+		}
 		scale(canvasMultiplier);
 		noFill();
 		stroke(darkGreen);
 		strokeWeight((random(0.25, 3)) / canvasMultiplier);
 		for (vc = 0; vc < vineCount; vc ++) { // Vine Columns
 			spacing = widthSpacing(widthSpac, widthSpacCenter, vc, canvasMultiplier); // Calculates Space between vines
-			for (vr = 0; vr < 20; vr ++) { // Vine Rows
-				arc(spacing, height - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
-				arc(spacing + 63, height + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
+			for (vr = 0; vr < 6; vr ++) { // Vine Rows
+				arc(spacing, (height / canvasMultiplier) - (vr * vineSeparation), 80, 100, 310, 45, OPEN);
+				arc(spacing + 63, (height / canvasMultiplier) + 63 - (vr * vineSeparation), 80, 100, 130, 225, OPEN);
 			}
 		}
 		// Vine Tracking Marks (Yellow)
 		stroke(vineYellow);
 		for (tc = 0; tc < vineCount; tc ++) {//Tracker Columns
 			spacing = widthSpacing(widthSpac, widthSpacCenter, tc, canvasMultiplier);
-			for (tr = 0; tr < 20; tr ++) { // Tracker Rows
-				arc(spacing, height - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
-				arc(spacing + 63, height + 63 - (tr * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
+			for (tr = 0; tr < 6; tr ++) { // Tracker Rows
+				arc(spacing, (height / canvasMultiplier) - (tr * vineSeparation), 80, 100, 45 - vineWidth, 45 - vineWidth + 1 + (vineWidth / 7), OPEN); //310
+				arc(spacing + 63, (height / canvasMultiplier) + 63 - (tr * vineSeparation), 80, 100, 130 + vineWidth, 145 + vineWidth - (vineWidth / 7), OPEN); //225
 			}
 		}
 	pop();
@@ -127,14 +131,14 @@ function draw_one_frame(cur_frac) {
 			scale(canvasMultiplier);
 			spacing = widthSpacing(widthSpac, widthSpacCenter, c, canvasMultiplier);
 
-			for (pr = 0; pr < (18 * canvasMultiplier); pr ++) { // Particle Rows // 18
+			for (pr = 0; pr < 18; pr ++) { // Particle Rows
 				let pointY = 0;
 				let pointX = 0;
 
 				//BEE Sine Waves
 				for (pt = 0; pt < 6; pt ++) {
 					pointY = (height / (16 * canvasMultiplier) * pr) - pointTrack - 20; // 16
-					pointX = 50 * sin(pointY * 5 + pt) + 30 + spacing;
+					pointX = beeSineWidth * sin(pointY * 5 + pt) + 30 + spacing;
 					noStroke();
 					if(pt %2 == 1 && bees) {
 						fill(60, 100, 100);
@@ -149,16 +153,17 @@ function draw_one_frame(cur_frac) {
 					noFill();
 					stroke(255);
 					strokeWeight(0.25);
-					ellipse(50 * sin(pointY * 5) + 30 + spacing, pointY -1, 3, random(0, 5));
-					ellipse(50 * sin(pointY * 5) + 31 + spacing, pointY - 2, 3, random(-1, 4));
+					ellipse(beeSineWidth * sin(pointY * 5) + 30 + spacing, pointY -1, 3, random(0, 5));
+					ellipse(beeSineWidth * sin(pointY * 5) + 31 + spacing, pointY - 2, 3, random(-1, 4));
 				}
 
 				//LEAVES
 				let leafRot = 270 + 50 * sin(pointY * 3); // Sine Wave Leaf Rotation
 				push();
-					pointX2 = 10 * sin(pointY * 3) + 30 + spacing;
-					// noiseNumber = getNoiseValue(pointX2 + 2, pointY + (26 * canvasMultiplier), cur_frac, "LeafNoise", -0.2, 0.8, 100);
-					translate(pointX2 + 2, pointY + (26 * canvasMultiplier)); // 21, 28, 
+					translate(0, -5 * canvasMultiplier); // Realignment
+					leafPointX = 10 * sin(pointY * 3) + 30 + spacing;
+					// noiseNumber = getNoiseValue(leafPointX + 2, pointY + (26 * canvasMultiplier), cur_frac, "LeafNoise", -0.2, 0.8, 100);
+					translate(leafPointX + 2, pointY + (canvasMultiplier));
 					rotate(leafRot);
 					noStroke();
 
@@ -229,22 +234,23 @@ function draw_one_frame(cur_frac) {
 
 				pop();
 			}
-
-			// Terracota Pots
-			push();
-				scale(canvasMultiplier);
-				if (pots) {
-					fill(20, 80, 40);
-					noStroke();
-					quad(spacing + 15, height, spacing + 55, height, spacing + 65, height - 50, spacing + 5, height - 50);
-					fill(360, 40, 60);
-					rect(spacing + 5, height - 50, 60, 15, 2);
-					fill(360, 50, 20);
-					rect(spacing + 5, height - 35, 60, 2, 2);
-					fill(360, 40, 80);
-					rect(spacing + 5, height - 50, 60, 2, 2);
-				}
-			pop();
+		pop();
+		// Terracota Pots
+		push();
+		scale(canvasMultiplier);
+		translate(spacing - 2, height / canvasMultiplier);
+		if (pots) {
+			fill(20, 80, 40);
+			noStroke();
+			quad(11, 0, 59, 0, 69, - 50, 1, - 50);
+			fill(360, 50, 20);
+			rect(1, - 35, 68, 2, 2);
+			fill(360, 40, 60);
+			rect(1, - 50, 68, 15, 1);
+			fill(360, 40, 80);
+			rect(1, - 50, 68, 2, 2);
+			fill(255);
+		}
 		pop();
 	}
 }
@@ -296,20 +302,20 @@ function draw_Flowers(flowerType, X, Y, flowerColour, cur_frac, extraRotation, s
 			strokeWeight(2);
 			stroke(stemColour); // Green Stalk
 			line(0, 0, 0, -5);
-			for(i = 0; i < 6; i ++) {
-				if (flowerColour - pr * 2 + (splay * 5) > 360) {
+			for(i = 0; i < 6; i ++) { // Back Petals
+				if (flowerColour - pr * 2 + (splay * 5) > 360) { // Carry over from hue 360 back to 0
 					fill(0 - pr * 2 + (splay * 5 - 360), 100, 60 - pr * 6 + (splay / 5));
 				} else {
 					fill(flowerColour - pr * 2 + splay, 100, 60 - pr * 6 + (splay / 5));
 				}
 				stroke(flowerColour - pr * 2  + splay, 100, 70 - pr);
-			
 				strokeWeight(1);
 				rotate(5 + splay);
-				arc(18, 7, 40, 30, 200, 340, CHORD);
+
+				arc(18, 7, 40, 30, 200, 340, CHORD); // Back Petal Shape
 				arc(18, -7, 40, 30, 20, 160, CHORD);
 				
-				fill(255);
+				fill(255); // Petal Details
 				noStroke();
 				circle(30, 0, 3);
 				fill(flowerColour - splay, 100, 30 + splay);
@@ -317,45 +323,45 @@ function draw_Flowers(flowerType, X, Y, flowerColour, cur_frac, extraRotation, s
 			}
 			rotate(20);
 			scale(0.8);
-			for(i = 0; i < 6; i ++) {
+			for(i = 0; i < 6; i ++) { // Front Petals
 				if (10 + flowerColour - pr * 2 + (splay) > 360) {
 					fill(splay - 360, 100, 100 - pr)
-					stroke(10 + flowerColour - pr * 2 + splay, 100, 60 - pr * 6);//color2
+					stroke(10 + flowerColour - pr * 2 + splay, 100, 60 - pr * 6);
 				} else {
-					fill(10 + flowerColour - pr * 2 + splay, 100, 100 - pr);//color1
-					stroke(10 + flowerColour - pr * 2 + splay, 100, 60 - pr * 6);//color2
+					fill(10 + flowerColour - pr * 2 + splay, 100, 100 - pr);
+					stroke(10 + flowerColour - pr * 2 + splay, 100, 60 - pr * 6);
 				}
 				rotate(-5 - splay);
-				arc(18, 7, 40, 30, 200, 340, CHORD);
+				arc(18, 7, 40, 30, 200, 340, CHORD); // Front Petal Shape
 				arc(18, -7, 40, 30, 20, 160, CHORD);
 			}
 			rotate(-20);
-			for(i = 0; i < 6; i ++) {
+			for(i = 0; i < 6; i ++) { // Stigma in Center
 				rotate(splay + 5);
 				stroke(255);
 				fill(255);
-				line(0, 0, splay * 0.7, 0);
+				line(0, 0, splay * 0.4, 0);
 				circle(splay * 0.7, 0, 2);
 			}
 			fill(255);
 		pop();
-	} else if (flowerType == 'Pinwheel') { // 'Pinwheel', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac
+	} else if (flowerType == 'Pinwheel') { // Default Parameters: 'Pinwheel', 120, 0, -15, 0.3, lightPink, darkPink, cur_frac
 		translate(0, -15);
 		rotate(cur_frac * 120);
 		push();
 		scale(0.3);
 		strokeWeight(2);
-		for(i = 0; i < 6; i ++) {
+		for(i = 0; i < 6; i ++) { // Petals
 			stroke(340, 100, 30);
 			rotate(60);
-			fill(flowerColour, 100, 100); // Dark Leaf
+			fill(flowerColour, 100, 100);
 			arc(18, 7, 40, 30, 200, 340, CHORD);
-			fill(flowerColour, 100, 70); // Light Leaf
+			fill(flowerColour, 100, 70);
 			arc(18, -7, 40, 30, 20, 160, CHORD);
 			circle(10, 0, 10);
 		}
 		fill(255);
-		circle(0, 0, 8);
+		circle(0, 0, 8); // Center
 		pop();
 	} else {
 		fill(255, 0, 100);
