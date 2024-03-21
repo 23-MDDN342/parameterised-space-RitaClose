@@ -7,7 +7,25 @@
 
 # Vines
 --
+### Project Overview
+The design for this project was inspired by a previous wallpaper design I had made. I wanted to create a zoom background that was languid and soothing to look at while still being visually surprising.
 
+#### Vine Component
+The vines were created using open arcs in a for loop going up the page. I took this further by creating small arcs that would appear to be sliding up the vines using the <i>cur_frac<i/> function.
+
+#### Bee Component
+The bees originally began simply as dots that would circle the vines, these were made using sine waves split up into vertical segments so that each second they would only cover a small distance to create the helix effect of the bees circling the vine. This sine wave technique is used in many other components as well.
+
+#### Leaves Component
+The leaves are also created using sine waves and made to look as if they are growing up the vines. The leaves are created at 0,0 then translated and rotated to their positions to preserve their shape.
+I also added the effect of shading with the green colours based on their rotation - so the top-side of the leaves are always lightest when facing upwards.
+
+#### Flowers
+Creating the flowers was an interesting experience. I originally wanted to work with bezier curves and change the flowers shape as they moved up the screen, but I found that it was both easier and more practical to simply scale and change the colours of the flowers as they ascended.
+I developed three different types of flowers that can be interchanged but for my final output I decided on a lotus style of flower that flares open into a more classic flower shape every second in alternate rows.
+
+#### Trellis Background
+To add some more visual interest, I added in a background that resembles a trellis structure you may find in gardens for vine plants to grow up.
 
 ### Development Journal
 Depending on how my initial experiments go my idea for this project may change. At this point I am either planning on doing a background with only certain elements moving such as a room with a window in it and maybe a fireplace, or a production line in a industrial factory - or something more shape based with flowers and vines because I'd like to work on my skills using bezier curves and such.
