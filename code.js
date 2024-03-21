@@ -91,4 +91,37 @@ function keyTyped() {
       gifRecorder = new p5recorder (frameMax, 'wallpaper.gif', buffersPerFrame);
     }    
   }
+  if (key == 'b') {
+    bees = !bees;
+  }
+  if (key == '[') {
+    baseFlowerColour += 20;
+  }
+  if (key == ']') {
+    baseFlowerColour -= 20;
+  }
+  if (key == 'w') {
+    flowerSplay = 'Random';
+  }
+  if (key == 'x') {
+    flowerSplay = 'All';
+  }
+  if (key == 'y') {
+    flowerSplay = 'Alternate';
+  }
+  if (key == 'z') {
+    flowerSplay = 'None';
+  }
+  if (key == 'm') {
+    flowerType = 'MorningGlory';
+  }
+  if (key == 'l') {
+    flowerType = 'Lotus';
+  }
+  if (key == 'p') {
+    flowerType = 'Pinwheel';
+  }
+  if (key == 'n') {
+    flowerType = 'None';
+  }
 }
